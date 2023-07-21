@@ -84,4 +84,36 @@
 .list li {
   font-weight: bold;
   font-size: 25px;
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    padding: 0 30px;
+    align-items: center;
+  }
+  .title {
+    flex-direction: column;
+    align-items: center;
+  }
+  .title .name {
+    font-size: 40px;
+    text-align: center;
+  }
+  .desc {
+    padding-left: 0;
+    align-items: center;
+  }
+  .desc h2 {
+    font-size: 22px;
+  }
+  .desc p {
+    font-size: 16px;
+    text-align: center;
+  }
+  .list {
+    margin-left: 0;
+  }
+  .list li {
+    text-align: center;
+  }
 }/*# sourceMappingURL=base.css.map */
