@@ -16,6 +16,11 @@
   font-weight: bold;
   font-style: normal;
 }
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("fonts/PressStart2P-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -39,19 +44,34 @@
 
 .title {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 15px;
   margin-bottom: 0;
+  position: relative;
 }
-.title .name {
-  font-size: 60px;
+
+.name {
+  font-size: 15px;
+  letter-spacing: 1px;
   font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Press Start 2P";
 }
-.title .icon {
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  margin-left: 30px;
   display: block;
   width: 50px;
   height: 50px;
-  background: url(imgs/ghost2.svg) no-repeat center center transparent;
+  background: url(imgs/capa-talking.gif) no-repeat center center transparent;
   background-size: contain;
 }
 
@@ -86,6 +106,101 @@
   font-size: 25px;
 }
 
+.bubble {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  text-align: left;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000;
+  box-sizing: border-box;
+  width: 200px;
+  height: 184px;
+}
+.bubble p {
+  height: 180px;
+  overflow-y: auto;
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+  line-height: 2em;
+  padding: 12px;
+}
+.bubble::after {
+  content: "";
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+}
+.bubble.medium {
+  width: 350px;
+}
+.bubble.bottom::after {
+  height: 4px;
+  width: 4px;
+  bottom: -8px;
+  left: 32px;
+  box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000, -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff, -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
+}
+.bubble.left::after {
+  height: 4px;
+  width: 4px;
+  top: 20px;
+  left: -8px;
+  background: white;
+  box-shadow: -4px -4px #fff, -4px 0 #fff, -8px 0 #fff, 0 -8px #fff, -4px 4px #000, -8px 4px #000, -12px 4px #000, -16px 4px #000, -12px 0 #000, -8px -4px #000, -4px -8px #000, 0 -4px #fff;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000 !important;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 30px;
+  gap: 10px;
+}
+.links li {
+  list-style: none;
+  display: block;
+  width: 42px;
+  height: 42px;
+}
+.links li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  font-size: 0;
+}
+.links li a:hover {
+  opacity: 0.5;
+}
+.links li.gh a {
+  background: url(../imgs/github.svg) no-repeat center center;
+  background-size: contain;
+}
+.links li.so a {
+  background: url(../imgs/stackoverflow.png) no-repeat center center;
+  background-size: contain;
+}
+
+@keyframes hover {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+}
 @media screen and (max-width: 500px) {
   .wrapper {
     padding: 0 30px;

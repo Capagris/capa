@@ -1,25 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>capagris - maker & tinkerer</title>
-        <link rel="stylesheet" href="base.css" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="title">
-                <span class="icon ghost"></span>
-                <span class="name">capagris</span>
-            </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>capagris - maker & tinkerer</title>
+		<link rel="stylesheet" href="base.css" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	</head>
+	<script>
+		const text =
+			"Greetings stranger. I am capagris, maker and tinkerer. I like to build all sorts of things. Stay a while and listen...";
+		let index = 0;
 
-            <div class="desc">
-                <h2>maker &amp; tinkerer</h2>
-                <p>When I was young someone said to me: “If you don't like what you see, build your own thing...” and so I did.</p>
-            </div>
+		function typeWriter() {
+			const bubble = document.querySelector(".bubble p");
+			if (index < text.length) {
+				bubble.innerHTML += text.charAt(index);
+				index++;
+				setTimeout(typeWriter, 55); // Adjust speed as necessary
 
-            
-        </div>
-    </body>
+				// Scroll to the bottom of the bubble
+				bubble.scrollTop = bubble.scrollHeight;
+			} else {
+				// Typing is finished, switch the icon
+				document.querySelector(".icon.ghost").style.backgroundImage =
+					'url("imgs/capa.gif")';
+			}
+		}
+
+		// Preload images and start the typewriter effect on window load
+		window.onload = function () {
+			// Preloading images function call here (if not shown in this snippet)
+			typeWriter();
+		};
+	</script>
+
+	<body>
+		<div class="wrapper">
+			<div class="title">
+				<div class="bubble medium bottom"><p></p></div>
+				<div class="iconWrapper">
+					<span class="icon ghost"></span>
+					<span class="name">capagris</span>
+					<ul class="links">
+						<li class="gh"><a href="https://github.com/capagris">github</a></li>
+						<li class="so">
+							<a href="https://stackoverflow.com/users/142870/capagris"
+								>stackoverflow</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- <div class="desc">
+				<h2>maker &amp; tinkerer</h2>
+				<p>
+					When I was young someone said to me: “If you don't like what you see,
+					build your own thing...” and so I did.
+				</p>
+			</div> -->
+		</div>
+	</body>
 </html>
