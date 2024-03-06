@@ -29,6 +29,69 @@
   font-family: "Maison Neue", sans-serif;
 }
 
+.nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Press Start 2P";
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 30px;
+  gap: 20px;
+}
+.links li {
+  list-style: none;
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+.links li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  font-size: 0;
+}
+.links li a:hover {
+  opacity: 0.5;
+}
+.links li.gh a {
+  background: url(../imgs/github.svg) no-repeat center center;
+  background-size: contain;
+}
+.links li.so a {
+  background: url(../imgs/stackoverflow.png) no-repeat center center;
+  background-size: contain;
+}
+
+.list {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+.list li {
+  font-weight: bold;
+  font-size: 25px;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 400px;
@@ -50,14 +113,10 @@
   gap: 15px;
   margin-bottom: 0;
   position: relative;
+  animation: hover 6s ease-in-out infinite;
 }
-
-.name {
-  font-size: 15px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-family: "Press Start 2P";
+.title.stop {
+  animation: none;
 }
 
 .iconWrapper {
@@ -94,18 +153,6 @@
   line-height: 130%;
 }
 
-.list {
-  margin: 20px 0 0 65px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px 0;
-}
-.list li {
-  font-weight: bold;
-  font-size: 25px;
-}
-
 .bubble {
   position: relative;
   display: inline-block;
@@ -119,12 +166,12 @@
   height: 184px;
 }
 .bubble p {
-  height: 180px;
+  height: 172px;
   overflow-y: auto;
   font-family: "Press Start 2P", cursive;
   font-size: 16px;
   line-height: 2em;
-  padding: 12px;
+  padding: 5px 12px;
 }
 .bubble::after {
   content: "";
@@ -151,46 +198,45 @@
   box-shadow: -4px -4px #fff, -4px 0 #fff, -8px 0 #fff, 0 -8px #fff, -4px 4px #000, -8px 4px #000, -12px 4px #000, -16px 4px #000, -12px 0 #000, -8px -4px #000, -4px -8px #000, 0 -4px #fff;
 }
 
+.choices {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 40px;
+}
+.choices button {
+  padding: 5px 10px;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+  line-height: 100%;
+  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000;
+}
+.choices button:hover {
+  cursor: pointer;
+}
+
 /* Custom scrollbar styles */
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
   background-color: #fff;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #000 !important;
-}
-
-.links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0 30px;
-  gap: 10px;
-}
-.links li {
-  list-style: none;
-  display: block;
-  width: 42px;
-  height: 42px;
-}
-.links li a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #333;
-  font-size: 0;
-}
-.links li a:hover {
-  opacity: 0.5;
-}
-.links li.gh a {
-  background: url(../imgs/github.svg) no-repeat center center;
-  background-size: contain;
-}
-.links li.so a {
-  background: url(../imgs/stackoverflow.png) no-repeat center center;
-  background-size: contain;
 }
 
 @keyframes hover {
@@ -198,7 +244,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(20%);
+    transform: translateY(10%);
   }
 }
 @media screen and (max-width: 500px) {

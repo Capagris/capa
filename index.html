@@ -12,58 +12,92 @@
 	</head>
 
 	<script>
-		const text =
-			"Greetings stranger. I am capagris, maker and tinkerer. I like to build all sorts of things. Stay a while and listen...";
-		let index = 0;
+		document.addEventListener("DOMContentLoaded", function () {
+			// Variable declarations
+			let text = `Greetings stranger. I am capagris, maker and tinkerer. What brings you here?`;
+			let index = 0;
 
-		function typeWriter() {
-			const bubble = document.querySelector(".bubble p");
-			if (index < text.length) {
-				bubble.innerHTML += text.charAt(index);
-				index++;
-				setTimeout(typeWriter, 55); // Adjust speed as necessary
+			const randomFacts = [
+				"I opened a pizzeria once...11 years ago, it runs profitably to this day...",
+				"I like it when people speak their minds and cut to the chase...",
+				"I speak three languages, two fluently (en/es) and one not so much...(ru)",
+			];
 
-				// Scroll to the bottom of the bubble
-				bubble.scrollTop = bubble.scrollHeight;
-			} else {
-				// Typing is finished, switch the icon
-				document.querySelector(".icon.ghost").style.backgroundImage =
-					'url("imgs/capa.gif")';
+			// Function to restart the typewriter effect with new text
+			function updateText(newText) {
+				const bubble = document.querySelector(".bubble p");
+				bubble.innerHTML = ""; // Clear current text
+				text = newText; // Update global `text` variable with new content
+				index = 0; // Reset index for typewriter effect
+				typeWriter(); // Restart typewriter effect with new text
 			}
-		}
 
-		// Preload images and start the typewriter effect on window load
-		window.onload = function () {
-			// Preloading images function call here (if not shown in this snippet)
-			typeWriter();
-		};
+			// Typewriter effect
+			function typeWriter() {
+				const bubble = document.querySelector(".bubble p");
+				if (index < text.length) {
+					bubble.innerHTML += text.charAt(index);
+					index++;
+					setTimeout(typeWriter, 55); // Adjust speed as necessary
+					bubble.scrollTop = bubble.scrollHeight; // Scroll to the bottom of the bubble
+				} else {
+					document.querySelector(".icon.ghost").style.backgroundImage =
+						'url("imgs/capa.gif")';
+				}
+			}
+
+			// Event listeners for menu choices
+			document.getElementById("work").addEventListener("click", function () {
+				updateText(
+					"I mostly do project management and front-end dev work though I originally did design for a decade."
+				);
+			});
+
+			document
+				.getElementById("randomFact")
+				.addEventListener("click", function () {
+					const randomIndex = Math.floor(Math.random() * randomFacts.length);
+					updateText(randomFacts[randomIndex]);
+				});
+
+			document
+				.getElementById("stopMoving")
+				.addEventListener("click", function () {
+					console.log("stopped");
+					document.querySelector(".title").classList.add("stop");
+				});
+
+			// Start the typewriter effect on window load
+			window.onload = function () {
+				typeWriter();
+			};
+		});
 	</script>
 
 	<body>
+		<nav class="nav">
+			<span class="name">capagris</span>
+			<ul class="links">
+				<li class="gh"><a href="https://github.com/capagris">github</a></li>
+				<li class="so">
+					<a href="https://stackoverflow.com/users/142870/capagris"
+						>stackoverflow</a
+					>
+				</li>
+			</ul>
+		</nav>
 		<div class="wrapper">
 			<div class="title">
 				<div class="bubble medium bottom"><p></p></div>
 				<div class="iconWrapper">
 					<span class="icon ghost"></span>
-					<span class="name">capagris</span>
-					<ul class="links">
-						<li class="gh"><a href="https://github.com/capagris">github</a></li>
-						<li class="so">
-							<a href="https://stackoverflow.com/users/142870/capagris"
-								>stackoverflow</a
-							>
-						</li>
-					</ul>
 				</div>
 			</div>
-
-			<!-- <div class="desc">
-				<h2>maker &amp; tinkerer</h2>
-				<p>
-					When I was young someone said to me: “If you don't like what you see,
-					build your own thing...” and so I did.
-				</p>
-			</div> -->
+			<div class="choices">
+				<button id="work">Work</button>
+				<button id="randomFact">Random Fact</button>
+				<button id="stopMoving">I'm Getting Dizzy</button>
+			</div>
 		</div>
 	</body>
 </html>
